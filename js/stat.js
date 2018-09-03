@@ -36,6 +36,12 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
+var getRandomNum = function (min, max) {
+  var number = min + Math.random() * (max - min);
+
+  return Math.round(number);
+};
+
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, SHADOW_X, SHADOW_Y, SHADOW_COLOR);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
@@ -50,11 +56,12 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
     var playerTime = Math.round(times[i]);
+    var saturation = getRandomNum(10, 100);
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = BAR_COLOR;
     } else {
-      ctx.fillStyle = 'hsl(240, ' + Math.round(Math.random() * 100) + '%' + ', 50%)';
+      ctx.fillStyle = 'hsl(240, ' + saturation + '%' + ', 50%)';
     }
 
     ctx.fillRect(CLOUD_X + GAP_X + (BAR_WIDTH + GAP_X) * i, CLOUD_HEIGHT - FONT_GAP - GAP_Y, BAR_WIDTH, Math.round(-BAR_HEIGHT * times[i] / maxTime));
