@@ -38,9 +38,9 @@ var getMaxElement = function (arr) {
 };
 
 var getRandomNum = function (min, max) {
-  var number = min + Math.random() * (max - min);
+  var number = min + Math.random() * (max + 1 - min);
 
-  return Math.round(number);
+  return Math.floor(number);
 };
 
 window.renderStatistics = function (ctx, names, times) {
