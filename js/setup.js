@@ -2,8 +2,8 @@
 
 var WIZARDS_QUANITY = 4;
 var keyCode = {
-  ESC_KEY_CODE: 27,
-  ENTER_KEY_CODE: 13
+  ENTER: 13,
+  ESC: 27
 };
 var wizardParams = {
   NAMES: [
@@ -112,7 +112,7 @@ var closePopup = function () {
 };
 
 var popupEscPressHandler = function (evt) {
-  if (evt.keyCode === keyCode.ESC_KEY_CODE && evt.target !== inputUserNameElement) {
+  if (evt.keyCode === keyCode.ESC && evt.target !== inputUserNameElement) {
     closePopup();
   }
 };
@@ -120,7 +120,7 @@ var popupEscPressHandler = function (evt) {
 setupOpenElement.addEventListener('click', openPopup);
 
 setupOpenElement.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === keyCode.ENTER_KEY_CODE) {
+  if (evt.keyCode === keyCode.ENTER) {
     openPopup();
   }
 });
@@ -128,7 +128,7 @@ setupOpenElement.addEventListener('keydown', function (evt) {
 setupCloseElement.addEventListener('click', closePopup);
 
 setupCloseElement.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === keyCode.ENTER_KEY_CODE) {
+  if (evt.keyCode === keyCode.ENTER) {
     closePopup();
   }
 });
@@ -147,8 +147,8 @@ var changeEyesColor = function () {
 
 var changeFireballColor = function () {
   var fireballColorIndex = window.getRandomNum(0, wizardParams.FIREBALL_COLORS.length - 1);
-  wizardFireballElement.style.background = wizardParams.FIREBALL_COLORS[fireballColorIndex];
-  setupElement.querySelector('input[name="fireball-color"]').value = wizardFireballElement.style.background;
+  setupElement.querySelector('input[name="fireball-color"]').value = wizardParams.FIREBALL_COLORS[fireballColorIndex];
+  wizardFireballElement.style.background = setupElement.querySelector('input[name="fireball-color"]').value;
 };
 
 wizardCoatElement.addEventListener('click', changeCoatColor);
