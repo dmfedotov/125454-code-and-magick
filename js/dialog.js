@@ -6,6 +6,7 @@
   var setupCloseElement = setupElement.querySelector('.setup-close');
   var inputUserNameElement = setupElement.querySelector('.setup-user-name');
   var uploadElement = setupElement.querySelector('.upload');
+  var form = setupElement.querySelector('.setup-wizard-form');
 
   var openPopup = function () {
     setupElement.classList.remove('hidden');
@@ -83,5 +84,10 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+  });
+
+  form.addEventListener('submit', function (evt) {
+    window.save(new FormData(form), closePopup, window.onError);
+    evt.preventDefault();
   });
 }());
